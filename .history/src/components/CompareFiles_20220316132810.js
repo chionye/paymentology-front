@@ -1,0 +1,5 @@
+const CompareFiles = () => {
+    return(
+        <Section
+    )
+}
