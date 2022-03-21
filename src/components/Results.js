@@ -4,14 +4,15 @@ import FileSummary from "./FileSummary";
 import FileReports from "./FileReports";
 import Section from "./Section";
 import { useFileContext } from "../context/index.context";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
-const Results = () => {
+const Results = (props) => {
+    const titleRef = useRef()
     const {file} = useFileContext();
     const [getReport, setReport] = useState();
-
+    setTimeout(()=>titleRef.current.scrollIntoView({ behavior: 'smooth' }),200);
+    
     const generateReport = () => {
-
         setReport(
             <FileReports />
         );
@@ -21,7 +22,7 @@ const Results = () => {
         <>
         <Container>
             <Section title={"Comparison results"}>
-                <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+                <div className={`${props.loader} flex flex-col md:flex-row md:justify-between md:items-center`} ref={titleRef}>
                     <FileSummary
                         fileName={file.fileName1}
                         totalRecords={file.file1.len[0].size}

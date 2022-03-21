@@ -8,16 +8,22 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useFileContext } from "../context/index.context";
 import { useState } from "react";
+import {Link} from "react-scroll";
 
 const CompareFiles = () => {
 
     const {file, setFile} = useFileContext();
     const [summaryComponent, setSummaryComponent] = useState();
+    const [buttonTag, setButtonTag] = useState("compare");
+    const [stat, setStat] = useState(false);
+
     const notify = (message) => toast(message);
 
     const fileUpload = (e) => {
+        setStat(true)
+        setButtonTag("please wait!");
         e.preventDefault();
-        axios.post("https://paymentology-back.herokuapp.com/api/v1/transaction/upload-csv", new FormData(document.getElementById("formSub")))
+        axios.post("http://localhost:8080/api/v1/transaction/upload-csv", new FormData(document.getElementById("formSub")))
         .then((Response)=>{
             if(Response.data !== ""){
                 setFile({
@@ -27,13 +33,14 @@ const CompareFiles = () => {
                     file2: Response.data.file2,
                     fileName2: Response.data.file2.name[0].name,
                 })
-            addSummaryComponent();
+                setStat(false);
+                setButtonTag("compare")
+                addSummaryComponent();
             }else{
                 notify("unsupported file format");
             }
         })
         .catch((err)=>{
-            console.log(err);
             notify("something went wrong, please try again");
         })
     }
@@ -56,7 +63,9 @@ const CompareFiles = () => {
                     file={"Select file 2"}
                     />
                     <div className="my-3 md:my-0 md:mr-5">
-                    <Button width={"w-full"} label={"Compare"} handleForm={fileUpload} stat={false}/>
+                    <Link activeClass={"active"} to={"result"} spy={true} smooth={true}>
+                        <Button width={"w-full"} label={buttonTag} handleForm={fileUpload} stat={stat}/>
+                    </Link>
                     </div>
                 </div>
                 </form>
