@@ -17,7 +17,7 @@ const CompareFiles = () => {
 
     const fileUpload = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8080/api/v1/transaction/upload-csv", new FormData(document.getElementById("formSub")))
+        axios.post("https://paymentology-back.herokuapp.com/api/v1/transaction/upload-csv", new FormData(document.getElementById("formSub")))
         .then((Response)=>{
             if(Response.data !== ""){
                 setFile({
