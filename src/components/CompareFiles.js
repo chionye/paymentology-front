@@ -14,16 +14,17 @@ const CompareFiles = () => {
 
     const {file, setFile} = useFileContext();
     const [summaryComponent, setSummaryComponent] = useState();
-    const [buttonTag, setButtonTag] = useState("compare");
-    const [stat, setStat] = useState(false);
+    const [buttonValue, setButtonValue] = useState("compare");
+    const [buttonStat, setButtonStatus] = useState(false);
 
     const notify = (message) => toast(message);
 
     const fileUpload = (e) => {
-        setStat(true)
-        setButtonTag("please wait!");
         e.preventDefault();
-        axios.post("https://paymentology-back.herokuapp.com/api/v1/transaction/upload-csv", new FormData(document.getElementById("formSub")))
+        const formData = new FormData(document.getElementById("formSub"));
+        setButtonStatus(true);
+        setButtonValue("please wait!");
+        axios.post("https://paymentology-back.herokuapp.com/api/v1/transaction/upload-csv", formData)
         .then((Response)=>{
             if(Response.data !== ""){
                 setFile({
@@ -33,8 +34,6 @@ const CompareFiles = () => {
                     file2: Response.data.file2,
                     fileName2: Response.data.file2.name[0].name,
                 })
-                setStat(false);
-                setButtonTag("compare")
                 addSummaryComponent();
             }else{
                 notify("unsupported file format");
@@ -43,6 +42,8 @@ const CompareFiles = () => {
         .catch((err)=>{
             notify("something went wrong, please try again");
         })
+        setButtonStatus(true);
+        setButtonValue("please wait!");
     }
 
     const addSummaryComponent = (e) => {
@@ -64,7 +65,7 @@ const CompareFiles = () => {
                     />
                     <div className="my-3 md:my-0 md:mr-5">
                     <Link activeClass={"active"} to={"result"} spy={true} smooth={true}>
-                        <Button width={"w-full"} label={buttonTag} handleForm={fileUpload} stat={stat}/>
+                        <Button width={"w-full"} label={buttonValue} handleForm={fileUpload} stat={buttonStat}/>
                     </Link>
                     </div>
                 </div>
