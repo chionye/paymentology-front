@@ -43,7 +43,7 @@ const CompareFiles = () => {
             notify("something went wrong, please try again");
         })
         setButtonStatus(true);
-        setButtonValue("please wait!");
+        setButtonValue("compare");
     }
 
     const addSummaryComponent = (e) => {
