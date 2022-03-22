@@ -19,7 +19,7 @@ const CompareFiles = () => {
 
     const notify = (message) => {
         toast(message)
-        setButtonStatus(true);
+        setButtonStatus(false);
         setButtonValue("compare");
     };
 
