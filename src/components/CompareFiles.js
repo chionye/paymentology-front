@@ -17,13 +17,17 @@ const CompareFiles = () => {
     const [buttonValue, setButtonValue] = useState("compare");
     const [buttonStat, setButtonStatus] = useState(false);
 
-    const notify = (message) => toast(message);
+    const notify = (message) => {
+        toast(message)
+        setButtonStatus(true);
+        setButtonValue("compare");
+    };
 
     const fileUpload = (e) => {
         e.preventDefault();
         const formData = new FormData(document.getElementById("formSub"));
         setButtonStatus(true);
-        setButtonValue("please wait!");
+        setButtonValue("Analysing...");
         axios.post("https://paymentology-back.herokuapp.com/api/v1/transaction/upload-csv", formData)
         .then((Response)=>{
             if(Response.data !== ""){
@@ -35,6 +39,7 @@ const CompareFiles = () => {
                     fileName2: Response.data.file2.name[0].name,
                 })
                 addSummaryComponent();
+                notify("Analysis complete");
             }else{
                 notify("unsupported file format");
             }
@@ -42,8 +47,6 @@ const CompareFiles = () => {
         .catch((err)=>{
             notify("something went wrong, please try again");
         })
-        setButtonStatus(true);
-        setButtonValue("compare");
     }
 
     const addSummaryComponent = (e) => {
