@@ -28,14 +28,16 @@ const CompareFiles = () => {
         const formData = new FormData(document.getElementById("formSub"));
         setButtonStatus(true);
         setButtonValue("Analysing...");
-        axios.post("https://paymentology-back.herokuapp.com/api/v1/transaction/upload-csv", formData)
+        axios.post("http://localhost:8080/api/v1/transaction/upload-csv", formData)
         .then((Response)=>{
             if(Response.data !== ""){
                 setFile({
                     ...file,
                     file1: Response.data.result.noMatch.length === 0 ? Response.data.result1 : Response.data.result,
                     fileName1: Response.data.result.name[0].name,
+                    noMatch1:Response.data.result.noMatch.length,
                     fileName2: Response.data.result1.name[0].name,
+                    noMatch2:Response.data.result1.noMatch.length
                 })
                 addSummaryComponent();
                 notify("Analysis complete");
