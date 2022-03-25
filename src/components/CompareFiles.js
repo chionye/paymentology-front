@@ -35,7 +35,7 @@ const CompareFiles = () => {
             color='white'
             ariaLabel='loading'
         />);
-        axios.post("https://paymentology-front.herokuapp.com/api/v1/transaction/upload-csv", formData)
+        axios.post("https://paymentology-back.herokuapp.com/api/v1/transaction/upload-csv", formData)
         .then((Response)=>{
             if(Response.data !== ""){
                 setFile({
