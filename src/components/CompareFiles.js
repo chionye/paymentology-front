@@ -9,6 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useFileContext } from "../context/index.context";
 import { useState } from "react";
 import {Link} from "react-scroll";
+import { Oval } from  'react-loader-spinner';
+
 
 const CompareFiles = () => {
 
@@ -27,17 +29,23 @@ const CompareFiles = () => {
         e.preventDefault();
         const formData = new FormData(document.getElementById("formSub"));
         setButtonStatus(true);
-        setButtonValue("Analysing...");
-        axios.post("https://paymentology-back.herokuapp.com/api/v1/transaction/upload-csv", formData)
+        setButtonValue(<Oval
+            height="30"
+            width="30"
+            color='white'
+            ariaLabel='loading'
+        />);
+        axios.post("https://paymentology-front.herokuapp.com/api/v1/transaction/upload-csv", formData)
         .then((Response)=>{
             if(Response.data !== ""){
                 setFile({
                     ...file,
-                    file1: Response.data.result.noMatch.length === 0 ? Response.data.result1 : Response.data.result,
+                    file1: Response.data.result,
                     fileName1: Response.data.result.name[0].name,
                     noMatch1:Response.data.result.noMatch.length,
                     fileName2: Response.data.result1.name[0].name,
-                    noMatch2:Response.data.result1.noMatch.length
+                    noMatch2:Response.data.result1.noMatch.length,
+                    file2: Response.data.result1,
                 })
                 addSummaryComponent();
                 notify("Analysis complete");
@@ -53,6 +61,7 @@ const CompareFiles = () => {
     const addSummaryComponent = (e) => {
         setSummaryComponent(<div className="bg-gray-light"><Results /></div>)
     }
+    
 
     return(
         <>
