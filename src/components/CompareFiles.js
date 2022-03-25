@@ -30,8 +30,8 @@ const CompareFiles = () => {
         const formData = new FormData(document.getElementById("formSub"));
         setButtonStatus(true);
         setButtonValue(<Oval
-            height="30"
-            width="30"
+            height="20"
+            width="20"
             color='white'
             ariaLabel='loading'
         />);
