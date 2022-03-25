@@ -5,8 +5,10 @@ const FileContext = createContext(null);
 export const FileProvider = ({children}) => {
      const [file, setFile] = useState({
         file1: '',
+        noMatch1:'',
         fileName1: '',
-        fileName2: ''
+        fileName2: '',
+        noMatch2:''
     });
 
     return(
