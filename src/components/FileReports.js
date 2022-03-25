@@ -17,11 +17,11 @@ const FileReports = () => {
             <div className="w-full overflow-x-scroll flex flex-row" ref={titleRef}>
                 <FileReport 
                     fileName={file.fileName1} 
-                    match={file.file1.closeMatch}
+                    match={file.file2.closeMatch || file.file1.closeMatch}
                 />
                 <FileReport
                     fileName={file.fileName2} 
-                    match={file.file1.noMatch}
+                    match={file.file2.noMatch || file.file1.noMatch}
                 />
             </div>
             </Section>
