@@ -6,7 +6,6 @@ export const FileProvider = ({children}) => {
      const [file, setFile] = useState({
         file1: '',
         fileName1: '',
-        file2:'',
         fileName2: ''
     });
 
