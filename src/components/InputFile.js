@@ -1,7 +1,6 @@
 
 
 const InputFile = (props) => {
-    
 
     return(
         <div className="flex flex-col md:flex-row w-full md:w-3/4 md:items-center md:justify-between text-sm md:text-base tracking-wider my-2 md:px-4">

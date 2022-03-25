@@ -33,10 +33,9 @@ const CompareFiles = () => {
             if(Response.data !== ""){
                 setFile({
                     ...file,
-                    file1: Response.data.file1,
-                    fileName1: Response.data.file1.name[0].name,
-                    file2: Response.data.file2,
-                    fileName2: Response.data.file2.name[0].name,
+                    file1: Response.data.result.noMatch.length === 0 ? Response.data.result1 : Response.data.result,
+                    fileName1: Response.data.result.name[0].name,
+                    fileName2: Response.data.result1.name[0].name,
                 })
                 addSummaryComponent();
                 notify("Analysis complete");

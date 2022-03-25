@@ -31,9 +31,9 @@ const Results = (props) => {
                     />
                     <FileSummary
                         fileName={file.fileName2}
-                        totalRecords={file.file2.len[0].size}
-                        matchingRecords={file.file2.len[0].size - file.file2.noMatch.length}
-                        unmatchedRecords={file.file2.noMatch.length} 
+                        totalRecords={file.file1.len[1].size1}
+                        matchingRecords={file.file1.len[1].size1 - file.file1.noMatch.length}
+                        unmatchedRecords={file.file1.noMatch.length}
                     />
                 </div>
                 <div className="md:flex md:w-44 md:justify-center md:mx-auto">
