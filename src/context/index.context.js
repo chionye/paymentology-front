@@ -8,6 +8,7 @@ export const FileProvider = ({children}) => {
         noMatch1:'',
         fileName1: '',
         fileName2: '',
+        file2: '',
         noMatch2:''
     });
 
