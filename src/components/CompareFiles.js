@@ -16,7 +16,7 @@ const CompareFiles = () => {
 
     const {file, setFile} = useFileContext();
     const [summaryComponent, setSummaryComponent] = useState();
-    const [buttonValue, setButtonValue] = useState("compare");
+    const [buttonValue, setButtonValue] = useState("Compare");
     const [buttonStat, setButtonStatus] = useState(false);
 
     const notify = (message) => {
@@ -30,8 +30,8 @@ const CompareFiles = () => {
         const formData = new FormData(document.getElementById("formSub"));
         setButtonStatus(true);
         setButtonValue(<Oval
-            height="30"
-            width="30"
+            height="15"
+            width="15"
             color='white'
             ariaLabel='loading'
         />);    
