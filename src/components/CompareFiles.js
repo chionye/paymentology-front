@@ -30,23 +30,23 @@ const CompareFiles = () => {
         const formData = new FormData(document.getElementById("formSub"));
         setButtonStatus(true);
         setButtonValue(<Oval
-            height="20"
-            width="20"
+            height="30"
+            width="30"
             color='white'
             ariaLabel='loading'
-        />);
-        axios.post("https://paymentology-back.herokuapp.com/api/v1/transaction/upload-csv", formData)
+        />);    
+        axios.post("https://paymentology-front.herokuapp.com/api/v1/transaction/upload-csv", formData)
         .then((Response)=>{
             if(Response.data !== ""){
                 setFile({
                     ...file,
-                    file1: Response.data.result,
+                    file: Response.data.result,
                     fileName1: Response.data.result.name[0].name,
                     noMatch1:Response.data.result.noMatch.length,
                     fileName2: Response.data.result1.name[0].name,
                     noMatch2:Response.data.result1.noMatch.length,
                     file2: Response.data.result1,
-                })
+                })  
                 addSummaryComponent();
                 notify("Analysis complete");
             }else{

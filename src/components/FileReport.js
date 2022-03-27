@@ -16,7 +16,7 @@ const FileReport = (props) => {
                     props.match.map((nonMatches)=>{
                         return (
                             <tr className='odd:bg-white even:bg-gray-light hover:bg-white hover:text-blue hover:font-medium'>
-                                <td className="border border-gray-300 px-2 py-1">{nonMatches.TransactionID || "N/A"}</td>
+                                <td className="border border-gray-300 px-2 py-1">{nonMatches.TransactionDate || "N/A"}</td>
                                 <td className="border border-gray-300 px-2 py-1">{nonMatches.WalletReference|| "N/A"}</td>
                                 <td className="border border-gray-300 px-2 py-1">{nonMatches.TransactionAmount || "N/A"}</td>
                             </tr>
